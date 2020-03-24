@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Wite a review for {{restaurant.name}} </h3>
+    <form (submit)='makeReview()'>
+        <p>Your name:  <input type='text' name='chosen.customer'[(ngModel)]='chosen.customer' required minlength="3" #customer='ngModel'/></p>
+        <div *ngIf='customer.invalid'> 
+            <div *ngIf='customer.errors.required'>
+                **Customer name is required
+            </div>
+            <div *ngIf='customer.errors.minlength'>
+                **Customer name must be 3 characters long
+            </div>
+        </div>
+        <p>
+            <label for='Review'>Rating
+            <select name='chosen.stars' [(ngModel)]='chosen.stars' #stars ='ngModel'>
+                <div *ngIf='stars.invalid'> 
+                    <div *ngIf='stars.errors.required'>
+                        **Rating is required
+                    </div>
+                </div>
+                <option value='1'> 1 Star</option>
+                <option value='2'> 2 Stars</option>
+                <option value='3'> 3 Stars</option>
+                <option value='4'> 4 Stars</option>
+                <option value='5'> 5 Stars</option>
+            </select>
+            </label>
+        </p>
+        <p>Your review: <input type='text' name='chosen.description'[(ngModel)]='chosen.description' required minlength="3" #description='ngModel'></p>
+        <div *ngIf='description.invalid'> 
+            <div *ngIf='description.errors.required'>
+                **Description is required
+            </div>
+            <div *ngIf='description.errors.minlength'>
+                **Description must be 3 characters long
+            </div>
+        </div>
+        <input type='submit' value='Submit'>
+        <button [routerLink]="['/reviews', restaurant._id]">Cancel</button>
+    </form>
+</body>
+</html>

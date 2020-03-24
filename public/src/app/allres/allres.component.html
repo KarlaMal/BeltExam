@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button [routerLink]="['/new']">New Restaurant</button>
+    <table>
+        <tr>
+        <th>Restaurant</th>
+        <th>Cuisine</th>
+        <th>Actions Available</th>
+        </tr>
+        <tr *ngFor='let r of restaurants'>
+        <th>{{r.name}}</th>
+        <th>{{r.cuisine}}</th>
+        <th>
+            <button [routerLink]="['/reviews', r._id]">Read Reviews</button>
+            <button [routerLink]="['/update', r._id]">Update</button>
+            <button (click) = "Deleted(r._id)">Delete</button>
+        </th>
+        </tr>
+    </table>
+</body>
+</html>

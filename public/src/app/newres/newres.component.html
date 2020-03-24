@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Register a restaurant</h3>
+    <div>
+        <form (submit)="createRes()">
+            <p>Restaurant Name: <input type='text' value='{{rest.name}}'name='rest.name'[(ngModel)]='rest.name' required minlength="3" #name='ngModel'/></p>
+            <div *ngIf='name.invalid'> 
+                <div *ngIf='name.errors.required'>
+                    **Name is required
+                </div>
+                <div *ngIf='name.errors.minlength'>
+                    **Name must be 3 characters long
+                </div>
+            </div>
+            <p>Cuisine: <input type='text' value='{{rest.cuisine}}'name='rest.cuisine'[(ngModel)]='rest.cuisine' required minlength="3" #cuisine='ngModel'/></p>
+            <div *ngIf='cuisine.invalid'> 
+                <div *ngIf='cuisine.errors.required'>
+                    **Cuisine is required
+                </div>
+                <div *ngIf='cuisine.errors.minlength'>
+                    **Cuisine must be 3 characters long
+                </div>
+            </div>
+            <button [routerLink]="['/']">Cancel</button>
+            <input type='submit' value='Register'>
+        </form>
+    </div>
+</body>
+</html>
